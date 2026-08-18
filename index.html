@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>인천공항 항공편 통계</title>
+
+
+    <!-- Leaflet CSS -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- =====================================================
+         헤더
+    ====================================================== -->
+
+    <header class="header">
+
+        <div>
+
+            <h1>
+                ✈️ 인천공항 항공편 통계
+            </h1>
+
+            <p>
+                인천국제공항의 출발·도착 항공편을
+                국가와 도시별로 확인할 수 있습니다.
+            </p>
+
+        </div>
+
+
+        <div class="date-box">
+
+            <span>
+                마지막 업데이트
+            </span>
+
+            <strong id="updatedAt">
+                불러오는 중...
+            </strong>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         출발 / 도착 전환
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="control-section">
+
+            <div class="button-group">
+
+                <button
+                    id="departureBtn"
+                    class="toggle-btn active"
+                    type="button"
+                >
+                    ✈️ 출발
+                </button>
+
+
+                <button
+                    id="arrivalBtn"
+                    class="toggle-btn"
+                    type="button"
+                >
+                    🛬 도착
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             요약 통계
+        ================================================== -->
+
+        <div class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ✈️
+                </div>
+
+                <div>
+
+                    <p>
+                        전체 항공편
+                    </p>
+
+                    <strong id="totalFlights">
+                        -
+                    </strong>
+
+                    <span>
+                        편
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🌎
+                </div>
+
+                <div>
+
+                    <p id="countryTitle">
+                        출발 국가
+                    </p>
+
+                    <strong id="countryCount">
+                        -
+                    </strong>
+
+                    <span>
+                        개국
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🏙️
+                </div>
+
+                <div>
+
+                    <p>
+                        운항 도시
+                    </p>
+
+                    <strong id="cityCount">
+                        -
+                    </strong>
+
+                    <span>
+                        개
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🕐
+                </div>
+
+                <div>
+
+                    <p>
+                        데이터 날짜
+                    </p>
+
+                    <strong id="dataDate">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         검색 / 정렬
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="search-section">
+
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔎
+                </span>
+
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="국가 또는 도시 검색..."
+                    autocomplete="off"
+                >
+
+
+                <button
+                    id="clearSearch"
+                    class="clear-search"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <div class="sort-box">
+
+                <label for="sortSelect">
+                    정렬
+                </label>
+
+
+                <select
+                    id="sortSelect"
+                >
+
+                    <option value="desc">
+                        많은 순
+                    </option>
+
+                    <option value="asc">
+                        적은 순
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         국가 통계
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2 id="countryChartTitle">
+                    🌎 국가별 운항
+                </h2>
+
+                <p>
+                    국가에 마우스를 올리거나 검색할 수 있습니다.
+                </p>
+
+            </div>
+
+
+            <span
+                id="countryResultCount"
+                class="result-count"
+            >
+                0개
+            </span>
+
+        </div>
+
+
+        <div
+            id="countryChart"
+            class="chart"
+        >
+
+            <div class="loading">
+                데이터를 불러오는 중...
+            </div>
+
+        </div>
+
+
+        <button
+            id="countryMoreBtn"
+            class="more-btn"
+            type="button"
+        >
+            더보기
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         도시 통계
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2 id="cityChartTitle">
+                    🏙️ 도시별 운항
+                </h2>
+
+                <p>
+                    도시별 운항 횟수를 확인할 수 있습니다.
+                </p>
+
+            </div>
+
+
+            <span
+                id="cityResultCount"
+                class="result-count"
+            >
+                0개
+            </span>
+
+        </div>
+
+
+        <div
+            id="cityChart"
+            class="chart"
+        >
+
+            <div class="loading">
+                데이터를 불러오는 중...
+            </div>
+
+        </div>
+
+
+        <button
+            id="cityMoreBtn"
+            class="more-btn"
+            type="button"
+        >
+            더보기
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         선택한 국가 상세
+    ====================================================== -->
+
+    <section
+        id="detailPanel"
+        class="detail-panel"
+    >
+
+        <div class="detail-content">
+
+            <div
+                id="detailIcon"
+                class="detail-icon"
+            >
+                🌎
+            </div>
+
+            <div>
+
+                <p>
+                    선택한 국가
+                </p>
+
+                <h3 id="detailCountry">
+                    -
+                </h3>
+
+                <div class="detail-stats">
+
+                    <div>
+                        <span>오늘 운항</span>
+                        <strong id="detailTodayCount">-</strong>
+                    </div>
+
+                    <div>
+                        <span>출발</span>
+                        <strong id="detailDepartureCount">-</strong>
+                    </div>
+
+                    <div>
+                        <span>도착</span>
+                        <strong id="detailArrivalCount">-</strong>
+                    </div>
+
+                </div>
+
+                <div class="detail-cities">
+
+                    <h4>주요 도시</h4>
+
+                    <div id="detailCities"></div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="detailClose"
+                class="detail-close"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         세계지도
+    ====================================================== -->
+
+    <section class="card map-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    🌎 세계 지도
+                </h2>
+
+                <p>
+                    국가에 마우스를 올리면 운항 횟수를 확인할 수 있습니다.
+                </p>
+
+            </div>
+
+
+            <span
+                id="mapDirection"
+                class="map-direction"
+            >
+                ✈️ 출발
+            </span>
+
+        </div>
+
+
+        <div
+            id="worldMap"
+            class="world-map"
+        ></div>
+
+
+        <div class="map-help">
+
+            <span>
+                🖱️ 마우스를 올리면 운항 횟수를 확인할 수 있습니다.
+            </span>
+
+            <span>
+                💡 클릭하면 상세 정보를 확인할 수 있습니다.
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         Footer
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <span>
+            인천공항 항공편 통계
+        </span>
+
+        <span>
+            데이터는 주기적으로 업데이트됩니다.
+        </span>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- Leaflet JS -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+
+<!-- JavaScript -->
+
+<script
+    src="script.js"
+></script>
+
+
+</body>
+
+</html>
