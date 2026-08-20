@@ -26,8 +26,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run flights.py
-        env:
-          SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
         run: |
           python -X utf8 flights.py
 
