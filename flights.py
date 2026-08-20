@@ -14,7 +14,7 @@ from datetime import datetime
 # GitHub Actions → Settings → Secrets and variables
 # → Actions → New repository secret
 # 이름: SERVICE_KEY
-SERVICE_KEY = 0d7e8cee8999d1bbc8ded475e3f617b604e2ae799faf8cf296d569f32fe13008
+SERVICE_KEY = "0d7e8cee8999d1bbc8ded475e3f617b604e2ae799faf8cf296d569f32fe13008"
 
 DEPARTURE_URL = (
     "https://apis.data.go.kr/B551177/"
