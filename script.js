@@ -270,7 +270,32 @@ function formatNumber(number) {
 
 }
 
+function formatKST(dateString) {
 
+    if (!dateString) {
+        return "-";
+    }
+
+    const utcDate = new Date(
+        dateString.replace(" ", "T") + "Z"
+    );
+
+    if (isNaN(utcDate.getTime())) {
+        return dateString;
+    }
+
+    return utcDate.toLocaleString("ko-KR", {
+        timeZone: "Asia/Seoul",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    });
+
+}
 /* =========================================================
    HTML 안전 처리
 ========================================================= */
@@ -526,7 +551,7 @@ function renderSummary(data) {
     document.getElementById(
         "updatedAt"
     ).textContent =
-        statsData.updated_at || "-";
+        formatKST(statsData.updated_at);
 
 
     document.getElementById(
