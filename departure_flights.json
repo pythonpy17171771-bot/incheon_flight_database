@@ -625,12 +625,12 @@
         "airportCode": "PQC",
         "passengerOrCargo": "Passenger",
         "scheduleDatetime": "202608210405",
-        "estimatedDatetime": "202608210405",
+        "estimatedDatetime": "202608210416",
         "chkinRange": "E12-E18",
         "fstandPosition": "111",
         "gateNumber": "111",
         "terminalId": "P02",
-        "remark": "탑승마감",
+        "remark": "출발",
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
         "aircraftRegNo": "VNA529",
@@ -652,7 +652,7 @@
         "fstandPosition": "110",
         "gateNumber": "110",
         "terminalId": "P02",
-        "remark": "탑승준비",
+        "remark": "마감예정",
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
         "aircraftRegNo": "VNA918",
@@ -3493,7 +3493,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "HL7795",
+        "aircraftRegNo": "HL8293",
         "tmp1": null,
         "tmp2": null
     },
@@ -3515,7 +3515,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "HL7795",
+        "aircraftRegNo": "HL8293",
         "tmp1": null,
         "tmp2": null
     },
@@ -8927,7 +8927,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "73H",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B1226",
         "tmp1": null,
         "tmp2": null
     },
@@ -8949,7 +8949,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "73H",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B1226",
         "tmp1": null,
         "tmp2": null
     },
@@ -8971,7 +8971,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "73H",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B1226",
         "tmp1": null,
         "tmp2": null
     },
@@ -9059,7 +9059,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B32P7",
         "tmp1": null,
         "tmp2": null
     },
@@ -9081,7 +9081,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B32P7",
         "tmp1": null,
         "tmp2": null
     },
@@ -10467,7 +10467,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "321",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "BLEG",
         "tmp1": null,
         "tmp2": null
     },
@@ -10489,7 +10489,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "321",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "BLEG",
         "tmp1": null,
         "tmp2": null
     },
@@ -12227,7 +12227,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "359",
-        "aircraftRegNo": "HL8382",
+        "aircraftRegNo": "HL8361",
         "tmp1": null,
         "tmp2": null
     },
@@ -12249,7 +12249,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "359",
-        "aircraftRegNo": "HL8382",
+        "aircraftRegNo": "HL8361",
         "tmp1": null,
         "tmp2": null
     },
@@ -13305,7 +13305,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B30EC",
         "tmp1": null,
         "tmp2": null
     },
@@ -13327,7 +13327,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B30EC",
         "tmp1": null,
         "tmp2": null
     },
@@ -18101,7 +18101,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "HL7795",
+        "aircraftRegNo": "HL8293",
         "tmp1": null,
         "tmp2": null
     },
@@ -18123,7 +18123,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "HL7795",
+        "aircraftRegNo": "HL8293",
         "tmp1": null,
         "tmp2": null
     },
@@ -18145,7 +18145,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "HL7795",
+        "aircraftRegNo": "HL8293",
         "tmp1": null,
         "tmp2": null
     },
@@ -18167,7 +18167,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "HL7795",
+        "aircraftRegNo": "HL8293",
         "tmp1": null,
         "tmp2": null
     },
@@ -20345,7 +20345,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "359",
-        "aircraftRegNo": "HL8359",
+        "aircraftRegNo": "HL8361",
         "tmp1": null,
         "tmp2": null
     },
@@ -20367,7 +20367,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "359",
-        "aircraftRegNo": "HL8359",
+        "aircraftRegNo": "HL8361",
         "tmp1": null,
         "tmp2": null
     },
@@ -20389,7 +20389,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "359",
-        "aircraftRegNo": "HL8359",
+        "aircraftRegNo": "HL8361",
         "tmp1": null,
         "tmp2": null
     },
