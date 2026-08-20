@@ -11,7 +11,10 @@ from datetime import datetime
 # 설정
 # ============================================================
 
-SERVICE_KEY = "0d7e8cee8999d1bbc8ded475e3f617b604e2ae799faf8cf296d569f32fe13008"
+# GitHub Actions → Settings → Secrets and variables
+# → Actions → New repository secret
+# 이름: SERVICE_KEY
+SERVICE_KEY = os.environ.get("SERVICE_KEY", "").strip()
 
 DEPARTURE_URL = (
     "https://apis.data.go.kr/B551177/"
@@ -24,8 +27,6 @@ ARRIVAL_URL = (
 )
 
 PAGE_SIZE = 100
-
-UPDATE_INTERVAL = 300       # 5분
 
 MAX_RETRIES = 3
 
@@ -91,6 +92,13 @@ def load_json(filename):
 # ============================================================
 
 def get_all_flights(url, today, api_name):
+
+    if not SERVICE_KEY:
+
+        print("❌ SERVICE_KEY가 설정되지 않았습니다.")
+        print("GitHub Secrets에 SERVICE_KEY를 등록하세요.")
+
+        return None
 
     for retry in range(1, MAX_RETRIES + 1):
 
@@ -232,7 +240,6 @@ def get_all_flights(url, today, api_name):
             if not items:
 
                 print("⚠️ 데이터가 없습니다.")
-
                 break
 
             all_flights.extend(items)
@@ -305,7 +312,7 @@ def update_flight_data(today):
 
     print()
     print("=" * 70)
-    print("✈️ 인천공항 실시간 데이터 업데이트")
+    print("✈️ 인천공항 데이터 업데이트")
     print("=" * 70)
 
     print(f"📅 날짜: {today}")
@@ -499,19 +506,25 @@ def update():
     print(f"📅 날짜: {today}")
 
     if departure_data is not None:
+
         print(
             f"✈️ 출발: "
             f"{len(departure_data)}편"
         )
+
     else:
+
         print("✈️ 출발: 데이터 없음")
 
     if arrival_data is not None:
+
         print(
             f"🛬 도착: "
             f"{len(arrival_data)}편"
         )
+
     else:
+
         print("🛬 도착: 데이터 없음")
 
     print(
@@ -529,72 +542,11 @@ def update():
         f"{'성공' if stats_success else '실패'}"
     )
 
-
-# ============================================================
-# 메인
-# ============================================================
-
-def main():
-
-    print("=" * 70)
-    print("🚀 인천공항 실시간 통계 시스템")
-    print("=" * 70)
-
-    print("✈️ 출발 + 도착 API")
-    print("🌎 국가별 + 도시별 통계")
-    print("⭐ MASTER 항공편 통계")
-    print("⏱️ 5분마다 자동 업데이트")
-    print("📅 날짜 변경 자동 처리")
-    print("🛑 종료: Ctrl + C")
-
-    last_date = None
-
-    while True:
-
-        try:
-
-            today = get_today()
-
-            if last_date != today:
-
-                print()
-                print("📅 날짜가 변경되었습니다.")
-                print(f"새 날짜: {today}")
-
-                last_date = today
-
-            update()
-
-            print()
-            print("=" * 70)
-            print(
-                f"💤 {UPDATE_INTERVAL}초 후 "
-                "다시 업데이트합니다."
-            )
-            print("🛑 종료: Ctrl + C")
-            print("=" * 70)
-
-            time.sleep(
-                UPDATE_INTERVAL
-            )
-
-        except KeyboardInterrupt:
-
-            print()
-            print("🛑 프로그램을 종료합니다.")
-
-            break
-
-        except Exception as e:
-
-            print()
-            print("❌ 예상하지 못한 오류:")
-            print(e)
-
-            print()
-            print("⏱️ 30초 후 다시 시도합니다.")
-
-            time.sleep(30)
+    return (
+        departure_success
+        and arrival_success
+        and stats_success
+    )
 
 
 # ============================================================
@@ -602,4 +554,23 @@ def main():
 # ============================================================
 
 if __name__ == "__main__":
-    main()
+
+    print("=" * 70)
+    print("🚀 인천공항 데이터 업데이트")
+    print("=" * 70)
+
+    success = update()
+
+    if success:
+
+        print()
+        print("✅ 업데이트 성공")
+
+        sys.exit(0)
+
+    else:
+
+        print()
+        print("❌ 업데이트 실패")
+
+        sys.exit(1)
