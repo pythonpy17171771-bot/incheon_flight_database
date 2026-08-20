@@ -5,6 +5,7 @@ import os
 import subprocess
 import sys
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 
 # ============================================================
@@ -38,7 +39,7 @@ RETRY_WAIT = 10
 # ============================================================
 
 def get_today():
-    return datetime.now().strftime("%Y%m%d")
+    return datetime.now(ZoneInfo("Asia/Seoul")).strftime("%Y%m%d")
 
 
 # ============================================================
