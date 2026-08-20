@@ -12,9 +12,8 @@ from zoneinfo import ZoneInfo
 # 설정
 # ============================================================
 
-# GitHub Actions → Settings → Secrets and variables
-# → Actions → New repository secret
-# 이름: SERVICE_KEY
+# ⚠️ 실제 API 키는 여기에 직접 넣지 않는 것을 권장합니다.
+# GitHub Actions에서는 Secrets의 SERVICE_KEY를 사용합니다.
 SERVICE_KEY = "0d7e8cee8999d1bbc8ded475e3f617b604e2ae799faf8cf296d569f32fe13008"
 
 DEPARTURE_URL = (
@@ -28,18 +27,27 @@ ARRIVAL_URL = (
 )
 
 PAGE_SIZE = 100
-
 MAX_RETRIES = 3
-
 RETRY_WAIT = 10
 
 
 # ============================================================
-# 오늘 날짜
+# 한국 시간
 # ============================================================
 
+KST = ZoneInfo("Asia/Seoul")
+
+
+def get_now():
+    return datetime.now(KST)
+
+
 def get_today():
-    return datetime.now(ZoneInfo("Asia/Seoul")).strftime("%Y%m%d")
+    return get_now().strftime("%Y%m%d")
+
+
+def get_now_string():
+    return get_now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 # ============================================================
@@ -47,13 +55,11 @@ def get_today():
 # ============================================================
 
 def save_json(filename, data):
-
     with open(
         filename,
         "w",
         encoding="utf-8"
     ) as f:
-
         json.dump(
             data,
             f,
@@ -67,24 +73,19 @@ def save_json(filename, data):
 # ============================================================
 
 def load_json(filename):
-
     if not os.path.exists(filename):
         return None
 
     try:
-
         with open(
             filename,
             "r",
             encoding="utf-8"
         ) as f:
-
             return json.load(f)
 
     except Exception as e:
-
         print(f"⚠️ {filename} 읽기 실패: {e}")
-
         return None
 
 
@@ -95,10 +96,8 @@ def load_json(filename):
 def get_all_flights(url, today, api_name):
 
     if not SERVICE_KEY:
-
         print("❌ SERVICE_KEY가 설정되지 않았습니다.")
-        print("GitHub Secrets에 SERVICE_KEY를 등록하세요.")
-
+        print("GitHub Secrets → SERVICE_KEY를 확인하세요.")
         return None
 
     for retry in range(1, MAX_RETRIES + 1):
@@ -110,9 +109,7 @@ def get_all_flights(url, today, api_name):
         )
 
         all_flights = []
-
         page = 1
-
         success = True
 
         while True:
@@ -316,6 +313,7 @@ def update_flight_data(today):
     print("✈️ 인천공항 데이터 업데이트")
     print("=" * 70)
 
+    print(f"🇰🇷 한국 시간: {get_now_string()}")
     print(f"📅 날짜: {today}")
 
     # ========================================================
@@ -490,6 +488,13 @@ def update():
 
     today = get_today()
 
+    print()
+    print("=" * 70)
+    print("🕐 업데이트 시작")
+    print("=" * 70)
+    print(f"🇰🇷 한국 시간: {get_now_string()}")
+    print(f"📅 날짜: {today}")
+
     (
         departure_data,
         arrival_data,
@@ -504,6 +509,7 @@ def update():
     print("🎉 전체 업데이트 완료")
     print("=" * 70)
 
+    print(f"🇰🇷 한국 시간: {get_now_string()}")
     print(f"📅 날짜: {today}")
 
     if departure_data is not None:
