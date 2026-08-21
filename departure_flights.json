@@ -740,7 +740,7 @@
         "fstandPosition": "113",
         "gateNumber": "113",
         "terminalId": "P02",
-        "remark": "탑승준비",
+        "remark": "마감예정",
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
         "aircraftRegNo": "VNA281",
@@ -4894,7 +4894,7 @@
         "passengerOrCargo": "Passenger",
         "scheduleDatetime": "202608220650",
         "estimatedDatetime": "202608220920",
-        "chkinRange": "",
+        "chkinRange": "J31-J35",
         "fstandPosition": "36",
         "gateNumber": "36",
         "terminalId": "P01",
@@ -8135,7 +8135,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B303K",
         "tmp1": null,
         "tmp2": null
     },
@@ -8597,7 +8597,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B32P7",
         "tmp1": null,
         "tmp2": null
     },
@@ -8619,7 +8619,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "32Q",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B32P7",
         "tmp1": null,
         "tmp2": null
     },
@@ -10027,7 +10027,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B18360",
         "tmp1": null,
         "tmp2": null
     },
@@ -10049,7 +10049,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B18360",
         "tmp1": null,
         "tmp2": null
     },
@@ -10071,7 +10071,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B18360",
         "tmp1": null,
         "tmp2": null
     },
@@ -10093,7 +10093,7 @@
         "remark": null,
         "typeOfFlight": "I",
         "aircraftSubtype": "333",
-        "aircraftRegNo": "",
+        "aircraftRegNo": "B18360",
         "tmp1": null,
         "tmp2": null
     },
