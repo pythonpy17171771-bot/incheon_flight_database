@@ -549,11 +549,8 @@ def update():
         f"{'성공' if stats_success else '실패'}"
     )
 
-    return (
-        departure_success
-        and arrival_success
-        and stats_success
-    )
+    return stats_success
+    
 
 
 # ============================================================
