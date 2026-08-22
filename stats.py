@@ -21,7 +21,6 @@ import csv
 import os
 from collections import Counter
 from datetime import datetime
-from zoneinfo import ZoneInfo
 
 
 # ============================================================
@@ -41,9 +40,7 @@ STATS_FILE = "stats.json"
 # ============================================================
 
 def get_today():
-    return datetime.now(
-        ZoneInfo("Asia/Seoul")
-    ).strftime("%Y%m%d")
+    return datetime.now().strftime("%Y%m%d")
 
 
 # ============================================================
