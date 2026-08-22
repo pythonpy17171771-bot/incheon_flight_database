@@ -62,8 +62,8 @@ const GEO_COUNTRY_ALIASES = {
     "Taiwan": "Taiwan",
     "Vietnam": "Vietnam",
     "Laos": "Laos",
-    "Macao": "China",
-    "Hong Kong": "China"
+    "Macao": "Macao",
+    "Hong Kong": "Hong Kong" 
 };
 
 
@@ -160,6 +160,7 @@ const countryNameMap = {
 
     "Japan": "일본",
     "China": "중국",
+    "Macao": "마카오",
 
     "United States": "미국",
     "United States of America": "미국",
@@ -270,32 +271,7 @@ function formatNumber(number) {
 
 }
 
-function formatKST(dateString) {
 
-    if (!dateString) {
-        return "-";
-    }
-
-    const utcDate = new Date(
-        dateString.replace(" ", "T") + "Z"
-    );
-
-    if (isNaN(utcDate.getTime())) {
-        return dateString;
-    }
-
-    return utcDate.toLocaleString("ko-KR", {
-        timeZone: "Asia/Seoul",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
-    });
-
-}
 /* =========================================================
    HTML 안전 처리
 ========================================================= */
@@ -551,7 +527,7 @@ function renderSummary(data) {
     document.getElementById(
         "updatedAt"
     ).textContent =
-        formatKST(statsData.updated_at);
+        statsData.updated_at || "-";
 
 
     document.getElementById(
@@ -1749,7 +1725,10 @@ function drawWorldMap() {
             feature: getCountryFeature(entry),
             destination: getCapitalCoordinates(entry)
         }))
-        .filter(entry => entry.feature && entry.destination);
+        // Hong Kong and Macao are not included as independent polygons in
+        // every country GeoJSON source.  A missing polygon must not prevent
+        // their airport marker and route from being rendered.
+        .filter(entry => entry.destination);
 
     const maxCount = Math.max(...entries.map(entry => entry.count), 1);
 
@@ -1773,18 +1752,22 @@ function drawWorldMap() {
             const destination = entry.destination;
             const tooltip = getMapTooltip(entry);
 
-            L.geoJSON(entry.feature, {
-                style: {
-                    fillColor: "#2563eb",
-                    fillOpacity: 0.13,
-                    color: "#60a5fa",
-                    weight: 1
-                },
-                onEachFeature: (feature, layer) => {
-                    layer.bindTooltip(tooltip, { sticky: true, opacity: 1 });
-                    layer.on("click", () => showMapCountryDetail(entry));
-                }
-            }).addTo(worldLayer);
+            if (entry.feature) {
+
+                L.geoJSON(entry.feature, {
+                    style: {
+                        fillColor: "#2563eb",
+                        fillOpacity: 0.13,
+                        color: "#60a5fa",
+                        weight: 1
+                    },
+                    onEachFeature: (feature, layer) => {
+                        layer.bindTooltip(tooltip, { sticky: true, opacity: 1 });
+                        layer.on("click", () => showMapCountryDetail(entry));
+                    }
+                }).addTo(worldLayer);
+
+            }
 
             if (destination.distanceTo(L.latLng(INCHEON_COORDINATES)) > 25000) {
 
