@@ -11,7 +11,7 @@ from datetime import datetime
 # 설정
 # ============================================================
 
-SERVICE_KEY = "f369043d4c1699e0d3a01bff8a67b53a0670d5817819e0c63e5a50abca6fabae"
+SERVICE_KEY = "7234a96713c0e4598c5dfadb5f69484f61e808ee140b8e82cdc368ac3e538f3c"
 
 DEPARTURE_URL = (
     "https://apis.data.go.kr/B551177/"
@@ -25,7 +25,7 @@ ARRIVAL_URL = (
 
 PAGE_SIZE = 100
 
-UPDATE_INTERVAL = 300       # 5분
+UPDATE_INTERVAL = 300     # 5분
 
 MAX_RETRIES = 3
 
