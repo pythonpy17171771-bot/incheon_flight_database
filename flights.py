@@ -11,7 +11,7 @@ from datetime import datetime
 # 설정
 # ============================================================
 
-SERVICE_KEY = "0d7e8cee8999d1bbc8ded475e3f617b604e2ae799faf8cf296d569f32fe13008"
+SERVICE_KEY = "	f369043d4c1699e0d3a01bff8a67b53a0670d5817819e0c63e5a50abca6fabae"
 
 DEPARTURE_URL = (
     "https://apis.data.go.kr/B551177/"
