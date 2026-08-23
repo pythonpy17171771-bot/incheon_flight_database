@@ -543,63 +543,16 @@ def main():
     print("✈️ 출발 + 도착 API")
     print("🌎 국가별 + 도시별 통계")
     print("⭐ MASTER 항공편 통계")
-    print("⏱️ 5분마다 자동 업데이트")
-    print("📅 날짜 변경 자동 처리")
-    print("🛑 종료: Ctrl + C")
 
-    last_date = None
+    # 한 번만 업데이트
+    update()
 
-    while True:
+    print()
+    print("=" * 70)
+    print("✅ 업데이트가 끝났습니다.")
+    print("🛑 프로그램을 종료합니다.")
+    print("=" * 70)
 
-        try:
-
-            today = get_today()
-
-            if last_date != today:
-
-                print()
-                print("📅 날짜가 변경되었습니다.")
-                print(f"새 날짜: {today}")
-
-                last_date = today
-
-            update()
-
-            print()
-            print("=" * 70)
-            print(
-                f"💤 {UPDATE_INTERVAL}초 후 "
-                "다시 업데이트합니다."
-            )
-            print("🛑 종료: Ctrl + C")
-            print("=" * 70)
-
-            time.sleep(
-                UPDATE_INTERVAL
-            )
-
-        except KeyboardInterrupt:
-
-            print()
-            print("🛑 프로그램을 종료합니다.")
-
-            break
-
-        except Exception as e:
-
-            print()
-            print("❌ 예상하지 못한 오류:")
-            print(e)
-
-            print()
-            print("⏱️ 30초 후 다시 시도합니다.")
-
-            time.sleep(30)
-
-
-# ============================================================
-# 실행
-# ============================================================
 
 if __name__ == "__main__":
     main()
