@@ -27476,27 +27476,5 @@
         "aircraftRegNo": "A6EEI",
         "tmp1": null,
         "tmp2": null
-    },
-    {
-        "fid": "2026092000000007812571",
-        "codeshare": "Master",
-        "masterFlightId": null,
-        "flightId": "9G401",
-        "airline": "썬푸꾸옥항공",
-        "airport": "호찌민",
-        "airportCode": "SGN",
-        "passengerOrCargo": "Passenger",
-        "scheduleDatetime": "202609260010",
-        "estimatedDatetime": "202609252359",
-        "chkinRange": "H09-H16",
-        "fstandPosition": "112",
-        "gateNumber": "112",
-        "terminalId": "P02",
-        "remark": "출발",
-        "typeOfFlight": "I",
-        "aircraftSubtype": "32Q",
-        "aircraftRegNo": "VNA927",
-        "tmp1": null,
-        "tmp2": null
     }
 ]
